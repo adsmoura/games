@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+    <h:head>
+        <title>Cadastro Jogo</title>
+    </h:head>
+    <h:body>
+        <h:form id="cadastroJogos" role="form"  >
+            <table style="text-align: left;">
+                <tablehead>
+                    <tr>
+                        <th>
+                            <h:outputLabel value="ID" for="txtID"/>
+                        </th>
+                        <th>
+                            <h:outputLabel value="NOME" for="txtNOME"/>
+                        </th>
+                        <th>
+                            <h:outputLabel value="TIPO" for="txtTIPO"/>
+                        </th>
+                    </tr>
+                </tablehead>
+                <tablebody>
+                    <tr>
+                        <td>
+                            <h:inputText id="txtID"  value="#{jogoBean.game.id}"  />
+                        </td>
+                        <td>
+                            <h:inputText id="txtNOME"  value="#{jogoBean.game.nome}"  />
+                        </td>
+                        <td>
+                            <h:inputText id="txtTIPO"  value="#{jogoBean.game.tipo}"  />
+                        </td>
+                        <td>
+                            <h:commandButton value="Salvar" action="#{jogoBean.salvarJogo()}">
+                                <f:ajax execute="@form" render="tabela"/>
+                            </h:commandButton>
+                        </td>
+                    </tr>
+                </tablebody>
+            </table>            
+            <h:dataTable id="tabela" value="#{jogoBean.lista}" var="jogo" >
+                <h:column>
+                    <f:facet name="header">ID</f:facet>
+                    <h:outputText value="#{jogo.id}"/>
+                </h:column>
+                <h:column>
+                    <f:facet name="header">Nome</f:facet>
+                    <h:outputText value="#{jogo.nome}"/>
+                </h:column>
+                <h:column>
+                    <f:facet name="header">Tipo</f:facet>
+                    <h:outputText value="#{jogo.tipo}"/>
+                </h:column>
+            </h:dataTable>
+        </h:form>
+    </h:body>
+</html>
